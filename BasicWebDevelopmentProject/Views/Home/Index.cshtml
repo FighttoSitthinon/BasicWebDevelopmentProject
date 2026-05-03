@@ -1,0 +1,51 @@
+﻿@model BasicWebDevelopmentProject.Models.Dto.PersonalInfoDto;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Payment & Identity Verification</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        
+                        <!-- Thai Citizen ID -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="CitizenId" class="form-control"
+                                   placeholder="X-XXXX-XXXXX-XX-X"
+                                   maxlength="13"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                            <label asp-for="CitizenId"></label>
+                            <span asp-validation-for="CitizenId" class="text-danger small"></span>
+                            <div class="form-text">13-digit number issued by the government.</div>
+                        </div>
+
+                        <!-- Credit Card Number -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="CreditCardNumber" class="form-control"
+                                   placeholder="0000 0000 0000 0000"
+                                   maxlength="16"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                            <label asp-for="CreditCardNumber"></label>
+                            <span asp-validation-for="CreditCardNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Information</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
