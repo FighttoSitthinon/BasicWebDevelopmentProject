@@ -1,0 +1,21 @@
+@model BasicWebDevelopmentProject.Models.VerifiedModel
+
+
+<div>
+    <h1>
+        ID Status: 
+        @if (Model.id) {
+            <span>Correct</span>
+        } else {
+            <span>Incorrect</span>
+        }
+    </h1>
+    <h1>
+        Card Status: 
+        @if (Model.card) {
+            <span>Correct</span>
+        } else {
+            <span>Incorrect</span>
+        }
+    </h1>
+</div>

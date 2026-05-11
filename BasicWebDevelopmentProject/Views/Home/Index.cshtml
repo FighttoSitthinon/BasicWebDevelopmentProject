@@ -12,27 +12,29 @@
                     <h5 class="mb-0">Payment & Identity Verification</h5>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form asp-action="SubmitData" method="post">
                         
                         <!-- Thai Citizen ID -->
                         <div class="form-floating mb-3">
                             <input asp-for="CitizenId" class="form-control"
+                                   id="id_field"
                                    placeholder="X-XXXX-XXXXX-XX-X"
                                    maxlength="13"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             <label asp-for="CitizenId"></label>
-                            <span asp-validation-for="CitizenId" class="text-danger small"></span>
+                            <span id="id_sub_text" class="text-danger small visually-hidden"></span>
                             <div class="form-text">13-digit number issued by the government.</div>
                         </div>
 
                         <!-- Credit Card Number -->
                         <div class="form-floating mb-4">
                             <input asp-for="CreditCardNumber" class="form-control"
+                                   id="card_field"
                                    placeholder="0000 0000 0000 0000"
                                    maxlength="16"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             <label asp-for="CreditCardNumber"></label>
-                            <span asp-validation-for="CreditCardNumber" class="text-danger small"></span>
+                            <span id="card_sub_text" class="text-danger small visually-hidden"></span>
                         </div>
 
                         <div class="d-grid">
@@ -45,6 +47,43 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    var id_field = document.getElementById("id_field");
+    var id_sub_text = document.getElementById("id_sub_text");
+    var card_field = document.getElementById("card_field")
+    var card_sub_text = document.getElementById("card_sub_text")
+    id_field.addEventListener("keyup", (e) => {
+        
+        if (id_field.value.length != 13) {
+            id_sub_text.innerHTML = "ID is not 13 numbers long."
+            id_sub_text.classList.remove("visually-hidden")
+            id_sub_text.classList.remove("text-success")
+            id_sub_text.classList.add("text-danger")
+        } else {
+            id_sub_text.innerHTML = "ID Valid."
+            id_sub_text.classList.remove("visually-hidden")
+            id_sub_text.classList.remove("text-danger")
+            id_sub_text.classList.add("text-success")
+        }
+    })
+
+    card_field.addEventListener("keyup", (e) => {
+        if (card_field.value.length != 16) {
+            card_sub_text.innerHTML = "Card is not 16 numbers long."
+            card_sub_text.classList.remove("visually-hidden")
+            card_sub_text.classList.remove("text-success")
+            card_sub_text.classList.add("text-danger")
+        } else {
+            card_sub_text.innerHTML = "Card Valid."
+            card_sub_text.classList.remove("visually-hidden")
+            card_sub_text.classList.remove("text-danger")
+            card_sub_text.classList.add("text-success")
+        }
+    })
+
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
