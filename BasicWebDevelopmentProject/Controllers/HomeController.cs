@@ -18,8 +18,11 @@ namespace BasicWebDevelopmentProject.Web.Controllers
         public IActionResult SubmitData(CheckRequestDataDto Request)
         {
             // Here you can validate the submitted data with function on ValidationHelper
-            bool value = ValidationHelper.ValidateCreditCard(Request.CreditCardNumber);
-            if (value == null || value == false)
+            if(Request==null)return BadRequest();
+            if(string.IsNullOrEmpty(Request.CreditCardNumber)||string.IsNullOrEmpty(Request.CitizenId))return BadRequest();
+            bool credit = ValidationHelper.ValidateCreditCard(Request.CreditCardNumber);
+            bool citizen = ValidationHelper.ValidateCitizenId(Request.CitizenId);
+            if (!credit || !citizen)
             {
                 return BadRequest();
             }

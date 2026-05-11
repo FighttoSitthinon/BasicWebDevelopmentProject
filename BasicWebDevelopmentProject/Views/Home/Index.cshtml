@@ -12,11 +12,11 @@
                     <h5 class="mb-0">Payment & Identity Verification</h5>
                 </div>
                 <div class="card-body">
-                    <form asp-controller="Home" asp-action="SubmitData" method="post">
+                    <form asp-controller="Home" asp-action="SubmitData" method="post" id="submitform">
                         
                         <!-- Thai Citizen ID -->
                         <div class="form-floating mb-3">
-                            <input asp-for="CitizenId" class="form-control"
+                            <input asp-for="CitizenId" id="citizenid" class="form-control"
                                    placeholder="X-XXXX-XXXXX-XX-X"
                                    maxlength="13"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
@@ -27,7 +27,7 @@
 
                         <!-- Credit Card Number -->
                         <div class="form-floating mb-4">
-                            <input asp-for="CreditCardNumber" class="form-control"
+                            <input asp-for="CreditCardNumber" id="creditcard" class="form-control"
                                    placeholder="0000 0000 0000 0000"
                                    maxlength="16"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />

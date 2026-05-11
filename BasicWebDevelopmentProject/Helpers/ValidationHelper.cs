@@ -6,10 +6,11 @@
         public static bool ValidateCreditCard(string CreditCardNumber)
         {
             int n = CreditCardNumber.Length;
+            if(n!=16)return false;
             int sum = 0;
-            for(int i = n - 1; i >= 0; i--)
+            for (int i = n - 1; i >= 0; i--)
             {
-                int tmp = CreditCardNumber[i]-'0';
+                int tmp = CreditCardNumber[i] - '0';
                 int pos = n - 1 - i;
                 if (pos % 2 == 0)
                 {
@@ -23,27 +24,24 @@
             }
             // Console.WriteLine(sum);
             // throw new NotImplementedException();
-            if(sum%10==0)return true;
+            if (sum % 10 == 0) return true;
             else return false;
         }
 
         // Implement function to check sum Thai Citizen ID numbers
         public static bool ValidateCitizenId(string CitizenId)
         {
-            int sum=0;
-            int n=CitizenId.Length;
-            for(int i = 0; i < n-1; i++)
+            if(CitizenId.Length!=13)return false;
+            int sum = 0;
+            for (int i = 0; i < 12; i++)
             {
-                sum+=(CitizenId[i]-'0')*(13-i);
+                sum += (CitizenId[i] - '0') * (13 - i);
             }
-            sum = sum%11;
-            int remiander = 11 - sum;
-            if(remainder/10 >= 1)
-            {
-                remiander = remainder
-            }
-            if(CitizenId[12]-'0' == )
+            int remainder = 11 - (sum % 11);
+            int checkDigit = remainder % 10;
+            return (CitizenId[12] - '0') == checkDigit;
             // throw new NotImplementedException();
         }
     }
 }
+

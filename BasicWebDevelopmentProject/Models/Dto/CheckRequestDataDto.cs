@@ -2,7 +2,7 @@
 {
     public class CheckRequestDataDto
     {
-        public string CitizenId { get; set; }
-        public string CreditCardNumber { get; set; }
+        public required string CitizenId { get; set; }
+        public required string CreditCardNumber { get; set; }
     }
 }
