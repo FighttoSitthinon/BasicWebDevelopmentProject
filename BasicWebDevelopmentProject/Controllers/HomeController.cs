@@ -2,6 +2,8 @@ using BasicWebDevelopmentProject.Helpers;
 using BasicWebDevelopmentProject.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 namespace BasicWebDevelopmentProject.Web.Controllers
 {
@@ -14,11 +16,15 @@ namespace BasicWebDevelopmentProject.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SubmitData(CheckRequestDataDto Request)
+        public IActionResult Index(PersonalInfoDto Request)
         {
             // Here you can validate the submitted data with function on ValidationHelper
-
-            throw new NotImplementedException();
+            
+            if(!ValidationHelper.ValidateCitizenId(Request.CitizenId)) return BadRequest("invalid CitizenId");
+            if(!ValidationHelper.ValidateCreditCard(Request.CreditCardNumber)) return BadRequest("invalid CreditCardNumber");
+            
+            return Ok();
+            // throw new NotImplementedException();
         }
     }
 }
