@@ -22,7 +22,7 @@
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             <label asp-for="CitizenId"></label>
                             <span asp-validation-for="CitizenId" class="text-danger small"></span>
-                            <div  id="Citizenalert" class="form-text">13-digit number issued by the government.</div>
+                            <div  id="Citizentext" class="form-text">13-digit number issued by the government.</div>
                         </div>
 
                         <!-- Credit Card Number -->
@@ -33,7 +33,7 @@
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             <label asp-for="CreditCardNumber"></label>
                             <span asp-validation-for="CreditCardNumber" class="text-danger small"></span>
-                            <div  id="CreditCardNumberalert"  class="form-text" >16-digit CreditCardNumber</div>
+                            <div  id="CreditCardNumbertext"  class="form-text" >16-digit CreditCardNumber</div>
                         </div>
 
                         <div class="d-grid">
