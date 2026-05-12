@@ -9,41 +9,22 @@ namespace BasicWebDevelopmentProject.Tests
         {
         }
 
-        [Test]
-        public void test_card_validation_1()
+        [TestCase("4549420001927672", true)] // Valid
+        [TestCase("4549420001927671", false)] // Valid: wrong number
+        [TestCase("532352", false)] // Invalid: wrong length
+        public void test_card_validation(string value, bool expected)
         {
-            string card_id = "4549420001927672";
-            Assert.That(ValidationHelper.ValidateCreditCard(card_id), Is.EqualTo(true));
+            bool result = ValidationHelper.ValidateCreditCard(value);
+            Assert.That(result, Is.EqualTo(expected));
         }
 
-        public void test_card_validation_2()
+        [TestCase("8121389985207", true)] // Valid
+        [TestCase("8121389985201", false)] // Valid: wrong number
+        [TestCase("23423", false)] // Invalid: wrong length
+        public void test_id_validation(string value, bool expected)
         {
-            string card_id = "4549420001927671";
-            Assert.That(ValidationHelper.ValidateCreditCard(card_id), Is.EqualTo(false));
-        }
-
-        public void test_card_validation_3()
-        {
-            string card_id = "532352";
-            Assert.That(ValidationHelper.ValidateCreditCard(card_id), Is.EqualTo(false));
-        }
-
-        public void test_id_validation_1()
-        {
-            string card_id = "8121389985207";
-            Assert.That(ValidationHelper.ValidateCitizenId(card_id), Is.EqualTo(true));
-        }
-
-        public void test_id_validation_2()
-        {
-            string card_id = "8121389985201";
-            Assert.That(ValidationHelper.ValidateCitizenId(card_id), Is.EqualTo(false));
-        }
-
-        public void test_id_validation_3()
-        {
-            string card_id = "23423";
-            Assert.That(ValidationHelper.ValidateCitizenId(card_id), Is.EqualTo(false));
+            bool result = ValidationHelper.ValidateCitizenId(value);
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }
